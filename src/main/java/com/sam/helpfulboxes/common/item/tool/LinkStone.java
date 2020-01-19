@@ -2,6 +2,7 @@ package com.sam.helpfulboxes.common.item.tool;
 
 import com.sam.helpfulboxes.common.lib.Dictionary;
 import com.sam.helpfulboxes.common.item.ItemMod;
+import com.sam.helpfulboxes.common.lib.TagDict;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;
@@ -24,6 +25,10 @@ public class LinkStone extends ItemMod {
         BlockPos pos = context.getPos();
 
         Block block = world.getBlockState(pos).getBlock();
+
+        if (block.getTags().contains(TagDict.Blocks.HOP_BOX))   {
+            ;
+        }
 
         return super.onItemUse(context);
     }

@@ -1,6 +1,6 @@
 package com.sam.helpfulboxes.common.item;
 
-import com.sam.helpfulboxes.common.Dictionary;
+import com.sam.helpfulboxes.common.lib.Dictionary;
 import com.sam.helpfulboxes.common.item.tool.LinkStone;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;

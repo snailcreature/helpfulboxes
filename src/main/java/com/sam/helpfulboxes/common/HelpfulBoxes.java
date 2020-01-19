@@ -1,5 +1,6 @@
 package com.sam.helpfulboxes.common;
 
+import com.sam.helpfulboxes.common.lib.Dictionary;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod(Dictionary.MOD_ID)

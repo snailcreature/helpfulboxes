@@ -1,6 +1,6 @@
 package com.sam.helpfulboxes.common.block;
 
-import com.sam.helpfulboxes.common.Dictionary;
+import com.sam.helpfulboxes.common.lib.Dictionary;
 import com.sam.helpfulboxes.common.block.box.HopBox;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

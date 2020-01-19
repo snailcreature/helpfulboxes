@@ -1,4 +1,7 @@
-package com.sam.helpfulboxes.common;
+package com.sam.helpfulboxes.common.lib;
+
+import net.minecraft.tags.Tag;
+import net.minecraft.util.ResourceLocation;
 
 public class Dictionary {
 

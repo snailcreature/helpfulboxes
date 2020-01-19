@@ -9,7 +9,6 @@ public class BlockMod extends Block {
         super(properties);
         setRegistryName(id);
         ModBlocks.modBlocks.add(this);
-
     }
 
 }

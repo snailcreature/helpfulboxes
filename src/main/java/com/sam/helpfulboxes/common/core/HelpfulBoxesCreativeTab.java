@@ -1,7 +1,6 @@
 package com.sam.helpfulboxes.common.core;
 
-import com.sam.helpfulboxes.common.Dictionary;
-import com.sam.helpfulboxes.common.item.ItemMod;
+import com.sam.helpfulboxes.common.lib.Dictionary;
 import com.sam.helpfulboxes.common.item.ModItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;

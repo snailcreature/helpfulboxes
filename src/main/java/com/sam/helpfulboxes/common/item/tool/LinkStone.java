@@ -32,8 +32,10 @@ public class LinkStone extends ItemMod {
                 if (!((HopBox) block).isWritten()) {
                     Boolean check = ((HopBox) block).setLink(linkPos, linkDim, world);
                     if (check) {
+                        System.out.println("Block Write SUCCESS");
                         return ActionResultType.SUCCESS;
                     }
+                    System.out.println("Block Write FAIL");
                     return ActionResultType.FAIL;
                 }
             }
@@ -41,6 +43,8 @@ public class LinkStone extends ItemMod {
                 if (((HopBox) block).isWritten())   {
                     linkPos = pos;
                     linkDim = world.getDimension().getType();
+                    System.out.println("Stone Write SUCCESS");
+                    return ActionResultType.SUCCESS;
                 }
             }
         }

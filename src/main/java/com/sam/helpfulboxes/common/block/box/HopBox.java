@@ -78,12 +78,16 @@ public class HopBox extends BlockMod {
 
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-        removeLink(worldIn);
+        if (isWritten())    {
+            removeLink(worldIn);
+        }
         super.onBlockHarvested(worldIn, pos, state, player);
     }
 
     @Override
     public void onBlockExploded(BlockState state, World world, BlockPos pos, Explosion explosion) {
-        removeLink(world);
+        if (isWritten()) {
+            removeLink(world);
+        }
     }
 }

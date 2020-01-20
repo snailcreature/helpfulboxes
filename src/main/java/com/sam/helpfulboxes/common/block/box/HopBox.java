@@ -6,6 +6,7 @@ import com.sam.helpfulboxes.common.lib.TagDict;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -89,5 +90,14 @@ public class HopBox extends BlockMod {
         if (isWritten()) {
             removeLink(world);
         }
+    }
+
+    @Override
+    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+        double x = worldIn.getSpawnPoint().getX();
+        double y = worldIn.getSpawnPoint().getY();
+        double z = worldIn.getSpawnPoint().getZ();
+        entityIn.setPosition(x, y, z);
+        super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
     }
 }

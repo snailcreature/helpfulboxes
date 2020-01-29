@@ -14,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraftforge.common.DimensionManager;
 
 import javax.annotation.Nullable;
 
@@ -38,11 +39,12 @@ public class HopBox extends BlockMod {
     }
 
     public boolean setLink(BlockPos pos, DimensionType dim, World world) {
-        Block linkedBlock = world.getBlockState(pos).getBlock();
+        // Block linkedBlock = world.getBlockState(pos).getBlock();
+        Block linkedBlock = DimensionManager.getWorld(world.getServer(), dim, false, false)
+                .getBlockState(pos).getBlock();
         if (linkedBlock.getTags().contains(TagDict.Blocks.HOP_BOX)) {
-            linkPos = pos.add(0, 1, 0);
-            linkDim = dim;
             linkedBox = (HopBox) linkedBlock;
+            setLink(linkedBox, pos, dim);
             return linkedBox.setLink(this, thisPos, thisDim);
         }
         return false;
@@ -52,6 +54,7 @@ public class HopBox extends BlockMod {
         linkedBox = link;
         linkPos = pos.add(0, 1, 0);
         linkDim = dim;
+        System.out.println(this.toString() + " Linked");
         return true;
     }
 
@@ -64,6 +67,8 @@ public class HopBox extends BlockMod {
         linkedBox = null;
         linkPos = null;
         linkDim = null;
+
+        System.out.println(this.toString() + " Unlinked and removed");
     }
 
     public boolean isWritten()  {
@@ -74,7 +79,7 @@ public class HopBox extends BlockMod {
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         thisPos = pos;
         thisDim = worldIn.getDimension().getType();
-        super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+        System.out.println(this + " Placed and set");
     }
 
     @Override
@@ -98,6 +103,7 @@ public class HopBox extends BlockMod {
         double y = worldIn.getSpawnPoint().getY();
         double z = worldIn.getSpawnPoint().getZ();
         entityIn.setPosition(x, y, z);
+        System.out.println(thisPos.toString() + ", " + thisDim.toString());
         super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
     }
 }

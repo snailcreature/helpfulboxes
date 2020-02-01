@@ -86,7 +86,7 @@ public class TEHopBox extends ModTileEntity {
         return id;
     }
 
-    public Set<Block> getValidBlocks()  {
-        return validBlocks;
+    public Block getValidBlock()  {
+        return validBlock;
     }
 }

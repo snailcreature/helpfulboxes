@@ -21,4 +21,14 @@ public class Dictionary {
         public static final String HOP_BOX = "hop_box";
     }
 
+    public static class Tile    {
+        // List tile ResourceLocations here
+
+        public static final ResourceLocation HOP_BOX = prefix(Block.HOP_BOX);
+    }
+
+    public static ResourceLocation prefix(String path)  {
+        return new ResourceLocation(MOD_ID, path);
+    }
+
 }

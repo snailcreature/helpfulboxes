@@ -1,4 +1,4 @@
-package com.sam.helpfulboxes.common.tileentity;
+package com.sam.helpfulboxes.common.block.tileentity;
 
 import com.sam.helpfulboxes.common.block.box.HopBox;
 import net.minecraft.tileentity.TileEntityType;

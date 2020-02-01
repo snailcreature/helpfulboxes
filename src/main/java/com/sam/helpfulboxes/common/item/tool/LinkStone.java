@@ -3,48 +3,43 @@ package com.sam.helpfulboxes.common.item.tool;
 import com.sam.helpfulboxes.common.block.box.HopBox;
 import com.sam.helpfulboxes.common.lib.Dictionary;
 import com.sam.helpfulboxes.common.item.ItemMod;
-import com.sam.helpfulboxes.common.lib.TagDict;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
 
 public class LinkStone extends ItemMod {
 
     private BlockPos linkPos = null;
-    private DimensionType linkDim = null;
+    private boolean written = false;
 
     public LinkStone() {
-        super(Dictionary.Item.LINK_STONE, new Properties());
+        super(Dictionary.Item.LINK_STONE, new Properties().maxStackSize(1));
     }
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
+        System.out.println("onItemUse triggered");
         World world = context.getWorld();
         BlockPos pos = context.getPos();
 
         Block block = world.getBlockState(pos).getBlock();
 
-        if (block.getTags().contains(TagDict.Blocks.HOP_BOX))   {
-            if (isWritten()) {
-                if (!((HopBox) block).isWritten()) {
-                    Boolean check = ((HopBox) block).setLink(linkPos, linkDim, world);
-                    if (check) {
-                        System.out.println("Block Write SUCCESS");
-                        return ActionResultType.SUCCESS;
+        if (!world.isRemote)    {
+            if (block instanceof HopBox)    {
+                if (written) {
+                    if (!pos.equals(linkPos)) {
+                        ((HopBox) block).setLink(linkPos, world);
+                        linkPos = null;
+                        written = false;
+                        System.out.println("Stone used");
                     }
-                    System.out.println("Block Write FAIL");
-                    return ActionResultType.FAIL;
                 }
-            }
-            else    {
-                if (((HopBox) block).isWritten())   {
+                else    {
                     linkPos = pos;
-                    linkDim = world.getDimension().getType();
-                    System.out.println("Stone Write SUCCESS");
-                    return ActionResultType.SUCCESS;
+                    written = true;
+                    System.out.println("Stone written");
                 }
             }
         }
@@ -53,6 +48,6 @@ public class LinkStone extends ItemMod {
     }
 
     public boolean isWritten()  {
-        return linkPos != null;
+        return written;
     }
 }

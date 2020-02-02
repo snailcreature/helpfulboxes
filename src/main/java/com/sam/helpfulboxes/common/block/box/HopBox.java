@@ -44,22 +44,8 @@ public class HopBox extends BlockMod {
     @Override
     public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
         System.out.println("onFallenUpon triggered");
-        //if (!worldIn.isRemote)  {
-            TEHopBox box = (TEHopBox) worldIn.getTileEntity(pos);
-            if (box.isWritten())    {
-//                double x = box.getLinkPos().getX();
-//                double y = box.getLinkPos().getY();
-//                double z = box.getLinkPos().getZ();
-//                entityIn.setPosition(x + 1, y + 1, z);
-
-                double x = worldIn.getSpawnPoint().getX();
-                double y = worldIn.getSpawnPoint().getY();
-                double z = worldIn.getSpawnPoint().getZ();
-                entityIn.setPosition(x, y, z);
-
-                System.out.println(entityIn.getName() + " Teleported");
-            }
-        //}
+        TEHopBox box = (TEHopBox) worldIn.getTileEntity(pos);
+        box.teleport(entityIn);
         super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
     }
 

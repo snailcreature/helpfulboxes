@@ -1,6 +1,6 @@
 package com.sam.helpfulboxes.common.item.tool;
 
-import com.sam.helpfulboxes.common.block.box.HopBox;
+import com.sam.helpfulboxes.common.block.box.BlockHopBox;
 import com.sam.helpfulboxes.common.lib.Dictionary;
 import com.sam.helpfulboxes.common.item.ItemMod;
 import net.minecraft.block.Block;
@@ -9,12 +9,12 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class LinkStone extends ItemMod {
+public class ItemLinkStone extends ItemMod {
 
     private BlockPos linkPos = null;
     private boolean written = false;
 
-    public LinkStone() {
+    public ItemLinkStone() {
         super(Dictionary.Item.LINK_STONE, new Properties().maxStackSize(1));
     }
 
@@ -27,10 +27,11 @@ public class LinkStone extends ItemMod {
         Block block = world.getBlockState(pos).getBlock();
 
         if (!world.isRemote)    {
-            if (block instanceof HopBox)    {
+            if (block instanceof BlockHopBox)    {
                 if (written) {
                     if (!pos.equals(linkPos)) {
-                        ((HopBox) block).setLink(linkPos, world);
+                        System.out.println("Linking to " + linkPos.toString());
+                        ((BlockHopBox) block).setLink(linkPos, world, pos);
                         linkPos = null;
                         written = false;
                         System.out.println("Stone used");

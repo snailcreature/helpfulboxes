@@ -17,17 +17,18 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 
 
-public class HopBox extends BlockMod {
+public class BlockHopBox extends BlockMod {
 
-    public HopBox()    {
+    public BlockHopBox()    {
         super(Dictionary.Block.HOP_BOX, Block.Properties.create(Material.WOOD));
     }
 
-    public boolean setLink(BlockPos pos, World world) {
-        TileEntity ent = world.getTileEntity(pos);
+    public boolean setLink(BlockPos pos, World world, BlockPos thisPos) {
+        System.out.println("pos recieved: " + pos.toString());
+        TileEntity ent = world.getTileEntity(thisPos);
         if (ent instanceof TEHopBox) {
             TEHopBox entity = (TEHopBox) ent;
-            return entity.link(pos, true);
+            return entity.link(pos);
         }
         return false;
     }
@@ -71,6 +72,7 @@ public class HopBox extends BlockMod {
                     return linkedEnt.unlink();
                 }
             }
+            world.removeTileEntity(pos);
         }
         return false;
     }

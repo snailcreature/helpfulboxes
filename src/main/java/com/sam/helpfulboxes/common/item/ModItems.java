@@ -1,7 +1,7 @@
 package com.sam.helpfulboxes.common.item;
 
+import com.sam.helpfulboxes.common.item.tool.ItemLinkStone;
 import com.sam.helpfulboxes.common.lib.Dictionary;
-import com.sam.helpfulboxes.common.item.tool.LinkStone;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,7 +18,7 @@ public class ModItems {
     // List items here
     // public static ItemMod EXAMPLE_ITEM = new ItemMod(Dictionary.Item.EXAMPLE_ITEM);
 
-    public static ItemMod LINK_STONE = new LinkStone();
+    public static ItemMod LINK_STONE = new ItemLinkStone();
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)    {

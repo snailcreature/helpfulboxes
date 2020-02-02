@@ -2,18 +2,16 @@ package com.sam.helpfulboxes.common.block;
 
 import com.mojang.datafixers.DataFixUtils;
 import com.mojang.datafixers.types.Type;
+import com.sam.helpfulboxes.common.block.box.BlockHopBox;
 import com.sam.helpfulboxes.common.block.tileentity.ModTileEntity;
 import com.sam.helpfulboxes.common.block.tileentity.TEHopBox;
 import com.sam.helpfulboxes.common.lib.Dictionary;
-import com.sam.helpfulboxes.common.block.box.HopBox;
 import net.minecraft.util.SharedConstants;
 import net.minecraft.util.datafix.DataFixesManager;
 import net.minecraft.util.datafix.TypeReferences;
 import net.minecraft.util.registry.Registry;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -37,7 +35,7 @@ public final class ModBlocks {
     }
 
     // List blocks here
-    public static BlockMod HOP_BOX = new HopBox();
+    public static BlockMod HOP_BOX = new BlockHopBox();
 
     // List blockItems here
     public static ItemBlockMod IHOP_BOX = new ItemBlockMod(Dictionary.Block.HOP_BOX, HOP_BOX);

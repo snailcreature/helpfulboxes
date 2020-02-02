@@ -30,16 +30,12 @@ public class TEHopBox extends ModTileEntity {
         System.out.println("HopBox created at " + pos.toString());
     }
 
-    public boolean link(BlockPos block, boolean source)  {
+    public boolean link(BlockPos block)  {
         if (!getWorld().isRemote)   {
             TEHopBox entity = (TEHopBox) getWorld().getTileEntity(block);
-            linkPos = block;
+            linkPos = entity.pos;
             written = true;
-//            System.out.println("Linking to " + linkPos.toString());
-//            if (source) {
-//                return entity.link(pos, false);
-//            }
-            System.out.println("Linked to " + linkPos.toString());
+            System.out.println(pos.toString() + " linked to " + linkPos.toString());
             return true;
         }
         return false;
@@ -54,12 +50,13 @@ public class TEHopBox extends ModTileEntity {
 
     public boolean teleport(Entity entityIn)    {
         if (written) {
-            entityIn.setPosition(
-                    linkPos.getX(),
-                    linkPos.getY(),
-                    linkPos.getZ()
-            );
-            System.out.println(entityIn.getName().getFormattedText() + " Teleported");
+            double x = linkPos.getX();
+            double y = linkPos.getY();
+            double z = linkPos.getZ();
+            if (!getWorld().isRemote) {
+                entityIn.setPosition(x + 1, y + 1, z + 1);
+                System.out.println(entityIn.getName().getFormattedText() + " teleported to " + entityIn.getPosition().toString());
+            }
             return true;
         }
         return false;
@@ -81,6 +78,7 @@ public class TEHopBox extends ModTileEntity {
             cmp.putInt(TAG_linkPosY, 0);
             cmp.putInt(TAG_linkPosZ, 0);
         }
+        System.out.println("Writing done");
     }
 
     @Override
@@ -93,6 +91,7 @@ public class TEHopBox extends ModTileEntity {
                     cmp.getInt(TAG_linkPosZ)
             );
         }
+        System.out.println("Reading done");
     }
 
     public BlockPos getLinkPos() {
